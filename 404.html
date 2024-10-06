@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | High School Readiness Portal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #1a237e;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .math-problem {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        input[type="number"] {
+            font-size: 1rem;
+            padding: 0.5rem;
+            width: 100px;
+            margin-right: 0.5rem;
+        }
+        button {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #303f9f;
+        }
+        #result {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>Oops! Looks like this page decided to play hooky.</p>
+        <p>While we search for it, why don't you try solving this math problem?</p>
+        <div class="math-problem">
+            <span id="num1"></span> + <span id="num2"></span> = ?
+        </div>
+        <input type="number" id="answer" placeholder="Your answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <div id="result"></div>
+        <p>Ready to head back to class? <a href="/">Return to the High School Readiness Portal</a></p>
+    </div>
+
+    <script>
+        let num1, num2, correctAnswer;
+
+        function generateProblem() {
+            num1 = Math.floor(Math.random() * 20) + 1;
+            num2 = Math.floor(Math.random() * 20) + 1;
+            correctAnswer = num1 + num2;
+            document.getElementById('num1').textContent = num1;
+            document.getElementById('num2').textContent = num2;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value);
+            const resultDiv = document.getElementById('result');
+            if (userAnswer === correctAnswer) {
+                resultDiv.textContent = "Correct! You're ready for high school math!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "Not quite. Try again!";
+                resultDiv.style.color = "red";
+            }
+        }
+
+        generateProblem();
+    </script>
+</body>
+</html>
