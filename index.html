@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="icon" href="https://i.ibb.co/qpfyBZ0/cm-logo-design-705304-804.jpg">       
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9th Grade Prep Hub</title>
+    <link rel="icon" href="https://i.ibb.co/qpfyBZ0/cm-logo-design-705304-804.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --primary-color: #3498db;
@@ -111,16 +110,24 @@
             margin-bottom: 20px;
         }
 
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
         input[type="radio"] {
             margin-right: 10px;
         }
 
         label {
-            display: block;
-            margin-bottom: 10px;
+            display: inline-block;
         }
 
-        button {
+        #submit-quiz {
             display: block;
             width: 100%;
             padding: 10px;
@@ -133,7 +140,7 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        button:hover {
+        #submit-quiz:hover {
             background-color: #2980b9;
             transform: translateY(-2px);
         }
@@ -142,6 +149,19 @@
             margin-top: 20px;
             font-weight: bold;
             text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
         }
 
         #countdown {
@@ -182,25 +202,14 @@
 
         .hidden-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--accent-color);
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
             border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .hidden-button:hover {
-            background-color: #c0392b;
-            transform: scale(1.1);
+            cursor: default;
+            z-index: 1000;
         }
 
         .time-management {
@@ -265,19 +274,6 @@
                 transform: scale(1);
             }
         }
-
-        .rotate {
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
     </style>
 </head>
 <body>
@@ -288,7 +284,6 @@
 
     <nav>
         <ul>
-            <li><a href="#countdown">Countdown</a></li>
             <li><a href="#map">Find Schools</a></li>
             <li><a href="#quiz">Readiness Quiz</a></li>
             <li><a href="#study-tips">Study Tips</a></li>
@@ -315,10 +310,73 @@
 
         <div id="quiz" class="section fade-in">
             <h2>9th Grade Readiness Quiz</h2>
-            <div id="quiz-container">
-                <!-- Quiz questions here (same as before) -->
+            <div class="quiz-container">
+                <div class="question">
+                    <p>1. What is the main difference between middle school and high school?</p>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a" name="q1" value="a">
+                            <label for="q1a">More homework</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1b" name="q1" value="b">
+                            <label for="q1b">Longer school days</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1c" name="q1" value="c">
+                            <label for="q1c">Greater independence and responsibility</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1d" name="q1" value="d">
+                            <label for="q1d">More field trips</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>2. Which of the following is a good study habit?</p>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a" name="q2" value="a">
+                            <label for="q2a">Cramming the night before a test</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2b" name="q2" value="b">
+                            <label for="q2b">Studying in a noisy environment</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2c" name="q2" value="c">
+                            <label for="q2c">Reviewing notes regularly</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2d" name="q2" value="d">
+                            <label for="q2d">Avoiding breaks while studying</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>3. What is a GPA?</p>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a" name="q3" value="a">
+                            <label for="q3a">Great Personal Achievement</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3b" name="q3" value="b">
+                            <label for="q3b">Grade Point Average</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3c" name="q3" value="c">
+                            <label for="q3c">General Progress Assessment</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3d" name="q3" value="d">
+                            <label for="q3d">Group Project Assignment</label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submit-quiz">Submit Quiz</button>
+                <div id="result"></div>
             </div>
-            <div id="result"></div>
         </div>
 
         <div id="study-tips" class="section fade-in">
@@ -372,14 +430,6 @@
                     <h3>Eliminate Distractions</h3>
                     <p>Identify and remove things that distract you during study time, like social media notifications.</p>
                 </div>
-                <div class="time-block">
-                    <h3>Learn to Say No</h3>
-                    <p>It's okay to decline activities that interfere with your priorities and goals.</p>
-                </div>
-                <div class="time-block">
-                    <h3>Review and Adjust</h3>
-                    <p>Regularly review your time management strategies and adjust as needed for better efficiency.</p>
-                </div>
             </div>
         </div>
 
@@ -393,8 +443,6 @@
                 <a href="#">Volunteer Organizations</a>
                 <a href="#">Arts Programs (Theater, Music, Visual Arts)</a>
                 <a href="#">Language Clubs</a>
-                <a href="#">Environmental or Sustainability Clubs</a>
-                <a href="#">Robotics or Coding Clubs</a>
             </div>
         </div>
 
@@ -406,11 +454,6 @@
                 <a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha - Computational Knowledge Engine</a>
                 <a href="https://www.duolingo.com/" target="_blank">Duolingo - Language Learning</a>
                 <a href="https://www.codecademy.com/" target="_blank">Codecademy - Learn to Code</a>
-                <a href="https://www.ck12.org/" target="_blank">CK-12 - Free Online Textbooks</a>
-                <a href="https://www.coursera.org/" target="_blank">Coursera - Online Courses</a>
-                <a href="https://www.edx.org/" target="_blank">edX - Free Online Courses</a>
-                <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg - Free eBooks</a>
-                <a href="https://www.desmos.com/" target="_blank">Desmos - Online Graphing Calculator</a>
             </div>
         </div>
 
@@ -422,43 +465,78 @@
                 <a href="tel:1-800-422-4453">Childhelp National Child Abuse Hotline: 1-800-422-4453</a>
                 <a href="tel:1-800-799-7233">National Domestic Violence Hotline: 1-800-799-7233</a>
                 <a href="tel:1-800-662-4357">SAMHSA National Helpline (Substance Abuse): 1-800-662-4357</a>
-                <a href="tel:1-866-488-7386">The Trevor Project (LGBTQ+ Youth): 1-866-488-7386</a>
                 <p>Remember, it's okay to ask for help. You're not alone.</p>
             </div>
         </div>
     </div>
 
-    <a href="celebrating1" class="hidden-button" aria-label="Hidden link">
-        <i class="fas fa-graduation-cap rotate"></i>
-    </a>
+    <a href="celebrating1" class="hidden-button" aria-label="Hidden link"></a>
 
     <script>
-        // Countdown to first day of school
-        const countdownDate = new Date("August 26, 2024 00:00:00").getTime();
+        // Countdown to next school year
         const countdownElement = document.getElementById("countdown");
 
         const updateCountdown = () => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let nextSchoolYear = new Date(currentYear, 7, 26); // August 26
 
+            // If we're past August 26 of the current year, set for next year
+            if (now > nextSchoolYear) {
+                nextSchoolYear.setFullYear(currentYear + 1);
+            }
+
+            const distance = nextSchoolYear.getTime() - now.getTime();
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            countdownElement.innerHTML = `First Day of School in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-            if (distance < 0) {
-                clearInterval(countdownTimer);
-                countdownElement.innerHTML = "School has started!";
-            }
+            countdownElement.innerHTML = `Next School Year Starts In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
         };
 
         const countdownTimer = setInterval(updateCountdown, 1000);
 
-        function checkAnswers() {
-            // Quiz checking function (same as before)
-        }
+        // Quiz functionality
+        const quizData = [
+            {
+                question: "What is the main difference between middle school and high school?",
+                correctAnswer: "c"
+            },
+            {
+                question: "Which of the following is a good study habit?",
+                correctAnswer: "c"
+            },
+            {
+                question: "What is a GPA?",
+                correctAnswer: "b"
+            }
+        ];
+
+        const submitQuiz = document.getElementById("submit-quiz");
+        const resultElement = document.getElementById("result");
+
+        submitQuiz.addEventListener("click", () => {
+            let score = 0;
+            quizData.forEach((q, index) => {
+                const selectedAnswer = document.querySelector(`input[name="q${index + 1}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === q.correctAnswer) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / quizData.length) * 100;
+            resultElement.innerHTML = `You scored ${score} out of ${quizData.length} (${percentage}%)`;
+            resultElement.style.display = "block";
+
+            if (percentage >= 70) {
+                resultElement.classList.add("correct");
+                resultElement.classList.remove("incorrect");
+            } else {
+                resultElement.classList.add("incorrect");
+                resultElement.classList.remove("correct");
+            }
+        });
 
         // Scroll animation
         function animateOnScroll() {
@@ -484,20 +562,6 @@
                 });
             });
         });
-
-        // Animate the hidden button
-        function animateHiddenButton() {
-            anime({
-                targets: '.hidden-button',
-                scale: [1, 1.1, 1],
-                duration: 1000,
-                easing: 'easeInOutQuad',
-                loop: true
-            });
-        }
-
-        // Call the animation functions
-        animateHiddenButton();
     </script>
 </body>
 </html>
